@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: bcapp-compat-api
+    runtime: node
+    plan: starter
+    rootDir: .
+    buildCommand: npm ci
+    startCommand: npm run server
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: DATABASE_URL
+        sync: false
+      - key: API_AUTH_REQUIRED
+        value: "false"
+      - key: API_RATE_LIMIT_ENABLED
+        value: "true"
+      - key: API_CORS_ALLOWLIST
+        sync: false
